@@ -1,8 +1,8 @@
 {
+  "author": "susantlalshrestha",
   "name": "graphql-map-selections",
   "version": "1.0.0",
   "description": "A package to map selections from graphql resolver info object",
-  "main": "src/index.ts",
   "keywords": [
     "graphql-map-selections",
     "gql-map-selections",
@@ -18,15 +18,7 @@
     "graphql",
     "GraphQLResolverInfo"
   ],
-  "author": "susantlalshrestha",
   "license": "MIT",
-  "devDependencies": {
-    "@types/node": "^16.3.3",
-    "typescript": "^4.3.5"
-  },
-  "dependencies": {
-    "graphql": "^15.5.1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/susantlalshrestha/graphql-map-selections.git"
@@ -34,5 +26,21 @@
   "bugs": {
     "url": "https://github.com/susantlalshrestha/graphql-map-selections/issues"
   },
-  "homepage": "https://github.com/susantlalshrestha/graphql-map-selections#readme"
+  "homepage": "https://github.com/susantlalshrestha/graphql-map-selections#readme",
+  "files": [
+    "lib"
+  ],
+  "main": "lib/index.ts",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "build": "rm ./lib/* && tsc",
+    "pre": "rm ./lib/* && tsc && npm version patch"
+  },
+  "devDependencies": {
+    "@types/node": "^16.3.3",
+    "typescript": "^4.3.5"
+  },
+  "dependencies": {
+    "graphql": "^15.5.1"
+  }
 }
