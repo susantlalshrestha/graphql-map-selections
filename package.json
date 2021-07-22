@@ -1,7 +1,7 @@
 {
   "author": "susantlalshrestha",
   "name": "graphql-map-selections",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "A package to map selections from graphql resolver info object",
   "keywords": [
     "graphql-map-selections",
