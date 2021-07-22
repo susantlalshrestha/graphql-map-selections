@@ -47,7 +47,7 @@ const mapSelectionNodes = (selections: ReadonlyArray<SelectionNode>) => {
   return select;
 };
 
-const mapSelections = (info: GraphQLResolveInfo) => {
+const mapSelections = (info: GraphQLResolveInfo): Record<string, boolean> => {
   const { fieldName, fieldNodes } = info;
   const { selectionSet } = fieldNodes.find((n) => n.name.value === fieldName);
   return selectionSet ? mapSelectionNodes(selectionSet.selections) : {};
