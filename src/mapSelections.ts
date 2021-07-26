@@ -12,6 +12,8 @@ type MapNodeStrategy = {
   [K in NodeType["kind"]]: (node: NodeType) => object;
 };
 
+type MapSelectionsReturnType = Record<string, boolean | any>;
+
 const mapFieldNode = (node: FieldNode) => {
   const { kind, name, selectionSet } = node;
   if (kind !== "Field" || name.value.startsWith("__")) return {};
@@ -47,14 +49,10 @@ const mapSelectionNodes = (selections: ReadonlyArray<SelectionNode>) => {
   return select;
 };
 
-const mapSelections = (
-  info: GraphQLResolveInfo
-): Record<string, boolean | any> => {
+const mapSelections = (info: GraphQLResolveInfo): MapSelectionsReturnType => {
   const { fieldName, fieldNodes } = info;
   const { selectionSet } = fieldNodes.find((n) => n.name.value === fieldName);
-  return selectionSet
-    ? mapSelectionNodes(selectionSet.selections)
-    : ({} as Record<string, boolean | any>);
+  return selectionSet ? mapSelectionNodes(selectionSet.selections) : {};
 };
 
 export default mapSelections;

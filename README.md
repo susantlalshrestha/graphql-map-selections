@@ -84,4 +84,16 @@ In above resolver function, the mapSelectons(info) will return:
 
 #### Usage with Prisma
 
-If you are using prisma ORM you can use the returned object by mapSelections to select object accepted by prisma client
+```
+import { mapSelections, toPrismaSelect } from "graphql-map-selections";
+
+const resolvers = {
+    Query: {
+        myProfile: (source, args, context, info) => {
+            const select = mapSelections(info)
+            const prismaSelect = toPrismaSelect(select)
+            ...
+        }
+    }
+}
+```
