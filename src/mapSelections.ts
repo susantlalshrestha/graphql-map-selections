@@ -15,6 +15,7 @@ type MapNodeStrategy = {
 type MapSelectionsReturnType = Record<string, boolean | any>;
 
 const mapFieldNode = (node: FieldNode) => {
+  if (!node) return;
   const { kind, name, selectionSet } = node;
   if (kind !== "Field" || name.value.startsWith("__")) return {};
   if (!selectionSet) return { [name.value]: true };
@@ -27,6 +28,7 @@ const mapFragmentSpreadNode = (node: FragmentSpreadNode) => {
 };
 
 const mapInlineFragmentNode = (node: InlineFragmentNode) => {
+  if (!node) return;
   const { kind, typeCondition, selectionSet } = node;
   const { name } = typeCondition;
   if (kind !== "InlineFragment") return {};
@@ -41,6 +43,7 @@ const mapNodeStrategies: MapNodeStrategy = {
 };
 
 const mapSelectionNodes = (selections: ReadonlyArray<SelectionNode>) => {
+  if (!selections) return;
   let select = {};
   selections.forEach((s) => {
     const node = mapNodeStrategies[s.kind](s);
@@ -50,6 +53,7 @@ const mapSelectionNodes = (selections: ReadonlyArray<SelectionNode>) => {
 };
 
 const mapSelections = (info: GraphQLResolveInfo): MapSelectionsReturnType => {
+  if (!info) return;
   const { fieldName, fieldNodes } = info;
   const { selectionSet } = fieldNodes.find((n) => n.name.value === fieldName);
   return selectionSet ? mapSelectionNodes(selectionSet.selections) : {};

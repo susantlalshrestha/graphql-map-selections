@@ -89,9 +89,10 @@ import { mapSelections, toPrismaSelect } from "graphql-map-selections";
 
 const resolvers = {
     Query: {
-        myProfile: (source, args, context, info) => {
+        myProfile: async (source, args, context, info) => {
             const select = mapSelections(info)
             const prismaSelect = toPrismaSelect(select)
+            await prismaClient.profile.findUnique({where: {id: args.id}, ...select})
             ...
         }
     }
