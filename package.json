@@ -34,7 +34,7 @@
   "types": "lib/index.d.ts",
   "scripts": {
     "build": "rm ./lib/* && tsc",
-    "pre": "rm ./lib/* && tsc && npm version patch"
+    "prepublish": "rm ./lib/* && tsc && npm version patch"
   },
   "devDependencies": {
     "@types/node": "^16.3.3",
